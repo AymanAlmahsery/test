@@ -1,95 +1,187 @@
-﻿//Correct the syntax error:
-
-int[] ARR = { 1, 7, 9, 45 };
-string[] arr2 = { "Str", "alex", "moh" };
-string[] arr3 = { "the", "fox", "over", "lazy", "dog" };
-/*What the index of "Banana","Tomato"?
-String [ ] fruits =["Tomato", "Banana", "Watermelon"]*/
-string anser = " 1 , 0";
-/*Create an multiple arrays that represents your:
-Favorite Food(5 item)
-Favorite Sport(3 item)
-Favorite Movie(4 item)
-Then, print each array using foreach, and Loop Through an Array*/
-string[] fFoods = { "Pizza", "Vegetables", "Burgers", "Fish", "Chicken" };
-string[] fSports = { "Fotbool", "Basketball", "Tennis" };
-string[] fMovies = { "The Shawshank Redemption", "Inception", "The Dark Knight", "Pulp Fiction" };
-Console.WriteLine("Favorite Foods:");
-foreach (string food in fFoods)
+﻿namespace MyApplication;
+class Program
 {
-    Console.WriteLine(food);
-}
-Console.WriteLine("Favorite Sports:");
-foreach (string sport1 in fSports)
-{
-    Console.WriteLine(sport1);
-}
-Console.WriteLine("Favorite Movies:");
-foreach (string movie in fMovies)
-{
-    Console.WriteLine(movie);
-}
-/*Write a program in C# to calculate the sum of three numbers with getting input in one line separated by a comma
-Expected Output:
-Input three numbers separated by comma: 5,10,15
-The sum of three numbers: 30.*/
-Console.Write("Input three numbers separated by comma: ");
-string input = Console.ReadLine();
-string[] numbers = input.Split(',');
-int sum = 0;
-foreach (string num in numbers)
-{
-    sum += int.Parse(num.Trim());
-}
-Console.WriteLine($"The sum of three numbers: {sum}");
-/*Write a program in C# to display the n terms of odd number and their sum from [1- 100 ]. 
-Test Data
-The odd numbers are1 3 5 7 9 11 13 15 17 19……
-The Sum of odd Numbers is: …...*/
-int sum = 0;
-Console.Write("The odd numbers are: ");
-for (int i = 1; i <= 100 ; i += 2)
-{
-    Console.Write(i + " ");
-    sum += i;
-}
-Console.WriteLine("\nThe Sum of odd Numbers is: " + sum);
-/*Write a program in C## to display the pattern like right angle triangle using an asterisk. Go to the editor
-The pattern like:
-   *
-  **
- ***
-*/
-for (int i = 1; i <= 3; i++)
-{
-    for (int j = 1; j <= 3 - i; j++)
+    static void Main(string[] args)
     {
-        Console.Write(" ");
+        /* Q1
+        int[] numbers = new int[10];
+        Console.WriteLine("Input the 10 numbers:");
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write($"Number-{i + 1}: ");
+            numbers[i] = Convert.ToInt32(Console.ReadLine());
+        }
+        int sum;
+        double average;
+        CalculateSumAndAverage(numbers, out sum, out average);
+        Console.WriteLine($"The sum of 10 numbers is: {sum}");
+        Console.WriteLine($"The Average is: {average:F6}");
+        
+        ****Q2
+        Console.Write("Input number of terms: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        for (int i = 1; i <= num; i++)
+        {
+            int cube = i * i * i;
+            Console.WriteLine($"Number is: {i} and cube of {i} is: {cube}");
+        }
+        ******Q3
+        *
+        int[] years = { 1763, 1972, 1925, 1916, 1984, 1124, 1950, 2020 };
+
+        int[] result = GetYearsGreaterThan1950(years);
+
+        Console.WriteLine("Years greater than 1950:");
+        foreach (int year in result)
+        {
+            Console.WriteLine(year);
+        }
+        *****Q4
+        Console.Write("Please Enter the age(Year) : ");
+        int ageInYears = Convert.ToInt32(Console.ReadLine());
+        int ageInDays = ConvertYearsToDays(ageInYears);
+        Console.WriteLine($"Age in years: {ageInYears} - Age in days: {ageInDays}");
+        ******Q5
+        int totalLegs = CountTotalLegs(2, 3, 5);
+        Console.WriteLine($"Total number of legs: {totalLegs}");
+        *****Q6
+        string result = Login("user", "123");
+        Console.WriteLine(result); 
+        *****Q7
+        int baseNumber = 2;
+        int exponent = 4;
+        double result = CalculatePower(baseNumber, exponent);
+        Console.WriteLine($"Result: {result}");
+       *****Q8
+        Console.Write("Enter a year between 1900 and 2024: ");
+        int year = Convert.ToInt32(Console.ReadLine());
+        bool isLeapYear = IsLeapYear(year);
+        if (isLeapYear)
+        {
+            Console.WriteLine($"{year} is a leap year.");
+        }
+        else
+        {
+            Console.WriteLine($"{year} is not a leap year.");
+        }
+        *****Q9
+        Console.Write("Enter a number to check if it's prime: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+        if (IsPrime(number))
+        {
+            Console.WriteLine($"{number} is a prime number.");
+        }
+        else
+        {
+            Console.WriteLine($"{number} is not a prime number.");
+        }
+        *****Q10
+
+        Console.Write("Enter a sentence: ");
+        string sentence = Console.ReadLine();
+        int wordCount = CountWords(sentence);
+        Console.WriteLine($"The number of words in the sentence: {wordCount}");
+        */
     }
-    for (int k = 1; k <= i; k++)
+    static int CountWords(string sentence)
     {
-        Console.Write("*");
-    }
-
-    /*    Console.WriteLine();
-        Write a program in C# to make such a pattern like right angle triangle with number increased by 1. Go to the editor
-    The pattern like :
-    1
-   2 3
-  4 5 6
- 7 8 9 10
-    */
-    int rows = 4; 
-    int number = 1;
-
-    for (int i = 1; i <= rows; i++)
-    {   for (int j = 1; j <= rows - i; j++)
-        {   Console.Write(" ");
-        }
-        for (int k = 1; k <= i; k++)
-        {   Console.Write(number + " ");
-            number++;
+        int wordCount = 0;
+        bool inWord = false;
+        foreach (char c in sentence)
+        {
+            if (char.IsWhiteSpace(c) || char.IsPunctuation(c))
+            {
+                inWord = false;
+            }
+            else if (!inWord)
+            {
+                wordCount++;
+                inWord = true;
+            }
         }
 
-        Console.WriteLine();
+        return wordCount;
     }
+    static bool IsPrime(int number)
+    {
+        if (number <= 1)
+        {
+            return false;
+        }
+        for (int i = 2; i <= Math.Sqrt(number); i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static bool IsLeapYear(int year)
+    {
+        if (year >= 1900 && year <= 2024)
+        {
+            return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+        }
+        else
+        {
+            Console.WriteLine("Please enter a year within the range of 1900 to 2024.");
+            return false;
+        }
+
+        static double CalculatePower(int baseNumber, int exponent)
+        {
+            return Math.Pow(baseNumber, exponent);
+        }
+        static string Login(string username, string password)
+        {
+            if (username == "user" && password == "123")
+            {
+                return "Pass";
+            }
+            else
+            {
+                return "Failed";
+            }
+        }
+        static int CountTotalLegs(int chickens, int cows, int pigs)
+        {
+            int totalChickensLegs = chickens * 2;
+            int totalCowsLegs = cows * 4;
+            int totalPigsLegs = pigs * 4;
+            return totalChickensLegs + totalCowsLegs + totalPigsLegs;
+        }
+
+        static int ConvertYearsToDays(int ageInYears)
+        {
+            const int DaysInAYear = 365;
+            return ageInYears * DaysInAYear;
+        }
+        static int[] GetYearsGreaterThan1950(int[] years)
+        {
+            List<int> filteredYears = new List<int>();
+
+            foreach (int year in years)
+            {
+                if (year > 1950)
+                {
+                    filteredYears.Add(year);
+                }
+            }
+
+            return filteredYears.ToArray();
+        }
+        static void CalculateSumAndAverage(int[] numbers, out int sum, out double average)
+        {
+            sum = 0;
+            foreach (int num in numbers)
+            {
+                sum += num;
+            }
+            average = (double)sum / numbers.Length;
+        }
+    }
+}
